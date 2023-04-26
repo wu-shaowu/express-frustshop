@@ -4,6 +4,11 @@ const cors = require('cors') //跨域
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const multer = require("multer")
+const {goodsModel} = require('./dao/model/goodsModel');
+
+
+
 
 
 var indexRouter = require('./routes/index');
@@ -15,7 +20,15 @@ var carsRouter = require('./routes/cars');
 // const jwtAuth =
 //  require('./utils/jwt');
 //连接mongodb
-require('./dao/database')
+// require('./dao/database')
+//连接mongodb
+const mongoose = require('mongoose')
+mongoose.set('strictQuery', true);
+const dbURI = 'mongodb://127.0.0.1:27017/fruitshop'; //连接项目mongodb的数据库的地址
+mongoose.connect(dbURI);
+mongoose.connection.on('connected',function(){
+  console.log(dbURI+'连接成功');
+});
 var app = express();
 //跨域
 const corsConfig = {
@@ -24,6 +37,12 @@ const corsConfig = {
 }
 //使用默认
 app.use(cors())
+
+// router.get('/', function(req, res, next) {
+//   res.render('index', { title: 'Express' });
+// });
+app.use(express.static(path.join(__dirname, 'public')));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');

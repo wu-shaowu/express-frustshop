@@ -8,7 +8,8 @@ const usersSchema = new Schema({
   coupon:String,
   address:Array,
   name:String,
-  daddress:String
+  daddress:String,
+  admin:Boolean
 },{versionKey: false}
 );
 //2.定义数据集合的模型，将schema和数据库中的集合关联起来

@@ -23,4 +23,11 @@ module.exports.getAllTrade =async ({usersId})=>{
    });
    return data;
 };
-
+module.exports.getAdminTrade =async ({_id})=>{
+   const data = await tradeModel.find().populate({
+      path:'carsId'
+   }).populate({
+      path:'usersId'
+   });
+   return data;
+};

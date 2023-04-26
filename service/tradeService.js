@@ -1,4 +1,4 @@
-const{getTrade,addTrade,keepTradeInfo,getAllTrade} = require('../dao/tradeDao')
+const{getTrade,addTrade,keepTradeInfo,getAllTrade,getAdminTrade} = require('../dao/tradeDao')
 module.exports.getTrade =async (trade)=>{
     const data =await getTrade(trade);
     if(data){
@@ -51,6 +51,24 @@ module.exports.addTrade =async (trade)=>{
 };
 module.exports.keepTradeInfo =async (trade)=>{
     const data =await keepTradeInfo(trade);
+    console.log(data);
+    if(data){
+        return {
+            message:'成功添加水果的数据',
+            status:1,
+            data,
+        }
+    }else{
+        return {
+            message:'失败添加水果的数据',
+            status:0,
+            data,
+        }
+    }
+
+};
+module.exports.getAdminTrade =async (trade)=>{
+    const data =await getAdminTrade(trade);
     console.log(data);
     if(data){
         return {

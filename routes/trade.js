@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const{getTrade,addTrade,keepTradeInfo,getAllTrade} = require('../service/tradeService');
+const{getTrade,addTrade,keepTradeInfo,getAllTrade,getAdminTrade} = require('../service/tradeService');
 //获得所有水果
 router.post('/getTrade',async(req, res, next)=> {
     console.log(req.body);
@@ -22,6 +22,11 @@ router.post('/keepTradeInfo',async(req, res, next)=> {
 router.post('/getAllTrade',async(req, res, next)=> {
     console.log(req.body);
     const data = await getAllTrade(req.body);
+    res.send(data);
+    
+});
+router.post('/getAdminTrade',async(req, res, next)=> {
+    const data = await getAdminTrade(req.body);
     res.send(data);
     
 });

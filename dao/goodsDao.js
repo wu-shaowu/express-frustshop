@@ -20,7 +20,18 @@ module.exports.getGoodDetail =async (id)=>{
    const data = await goodsModel.findById(id)
    return data;
 };
-
+module.exports.addGoods = async({name,images,isCheap,price,weight})=>{
+   const data = await goodsModel.create({name,images,isCheap,price,weight})
+   return data
+}
+module.exports.saveImage = async({name,images,isCheap,price,weight})=>{
+   const data = await goodsModel.create({name,images,isCheap,price,weight})
+   return data
+}
+module.exports.deleteGoods = async({_id})=>{
+   const data = await goodsModel.findByIdAndDelete({_id})
+   return data
+}
 
 
 
